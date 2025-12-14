@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Clean, exam-ready B.Sc Physics and Environmental Science notes: focused summaries, derivations and solved examples for faster revision." />
+  <title>B.Sc Physics Notes with Me — Sajal Baruah</title>
+
+  <!-- Simple favicon (SVG data URL) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230ea5e9'/%3E%3Ctext x='50' y='58' font-size='44' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' fill='%230b1120'%3ES%3C/text%3E%3C/svg%3E" />
+
+  <style>
+    :root{
+      --bg-0:#00030b;
+      --bg-1:#041026;
+      --card:#0b1220;
+      --accent:#38bdf8;
+      --accent-2:#22c55e;
+      --muted:#9ca3af;
+      --text:#e6eef8;
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      --max-width:1100px;
+    }
+
+    /* Reset / base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--text);
+      background: radial-gradient(circle at 10% 10%, #07203a 0%, var(--bg-1) 30%, var(--bg-0) 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    /* Skip link */
+    .skip-link{
+      position:absolute;
+      left:1rem;
+      top:1rem;
+      background:var(--accent);
+      color:#081022;
+      padding:.4rem .6rem;
+      border-radius:8px;
+      transform:translateY(-120%);
+      transition:transform .18s ease;
+      z-index:999;
+      text-decoration:none;
+      font-weight:600;
+      font-size:.85rem;
+    }
+    .skip-link:focus{ transform:translateY(0); outline:3px solid rgba(14,165,233,.3)}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(8px);
+      background: linear-gradient(90deg, rgba(5,8,22,.6), rgba(0,10,18,.55));
+      border-bottom:1px solid rgba(148,163,184,.06);
+    }
+
+    .nav{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:10px 18px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      justify-content:space-between;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo{
+      font-weight:800;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+      color:var(--accent);
+      font-size:.92rem;
+    }
+    .logo-sub{
+      color:var(--muted);
+      font-size:.78rem;
+      margin-top:2px;
+    }
+
+    nav[role="navigation"]{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .nav-links{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .nav-links a{
+      color:var(--muted);
+      text-decoration:none;
+      padding:8px 10px;
+      border-radius:10px;
+      font-size:.92rem;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus{ color:var(--text); background:var(--glass); outline:none; }
+
+    /* Mobile toggle */
+    .nav-toggle{
+      display:none;
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.04);
+      color:var(--muted);
+      padding:8px;
+      border-radius:10px;
+      cursor:pointer;
+    }
+
+    main{
+      max-width:var(--max-width);
+      margin:20px auto;
+      padding:22px;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 380px;
+      gap:22px;
+      align-items:start;
+      margin-bottom:28px;
+    }
+    @media (max-width:860px){
+      .hero{grid-template-columns:1fr; }
+      .nav-links{ display:none; }
+      .nav-toggle{ display:inline-flex; }
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(56,189,248,.16);
+      color:var(--accent);
+      font-weight:600;
+      font-size:.8rem;
+      width:max-content;
+    }
+    .h1{
+      font-size:clamp(1.6rem, 3.6vw, 2.4rem);
+      margin:12px 0 10px;
+      line-height:1.05;
+      color:var(--text);
+    }
+    .lead{
+      color:var(--muted);
+      font-size:1rem;
+      margin-bottom:12px;
+    }
+
+    .hero-actions{ display:flex; gap:10px; flex-wrap:wrap }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 14px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:.92rem;
+      text-decoration:none;
+      border:1px solid transparent;
+    }
+    .btn-primary{
+      background:linear-gradient(90deg, #0ea5e9, #22c55e);
+      color:#071226;
+    }
+    .btn-outline{
+      background:transparent;
+      color:var(--muted);
+      border:1px solid rgba(148,163,184,.08);
+    }
+    .btn-outline:hover{ color:var(--text); border-color:rgba(56,189,248,.45) }
+
+    .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.16));
+      border:1px solid rgba(148,163,184,.04);
+      border-radius:var(--radius);
+      padding:14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-chip{
+      position:absolute;
+      right:12px;
+      top:12px;
+      font-size:.78rem;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(6,10,18,.6);
+      color:var(--muted);
+      border:1px solid rgba(148,163,184,.03);
+    }
+
+    .preview{
+      height:150px;
+      border-radius:10px;
+      background-image:
+        linear-gradient(135deg, rgba(14,165,233,.12), rgba(34,197,94,.10)),
+        url('https://source.unsplash.com/900x600/?physics,books');
+      background-size:cover;
+      background-position:center;
+      border:1px solid rgba(148,163,184,.05);
+      margin-bottom:12px;
+      box-shadow:0 6px 30px rgba(2,6,23,.6);
+    }
+
+    .note-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.01), rgba(0,0,0,.08));
+      border-radius:12px;
+      padding:10px;
+      color:var(--muted);
+      font-size:.92rem;
+      border:1px solid rgba(148,163,184,.03);
+    }
+    .note-card strong{ color:var(--accent) }
+
+    /* Sections / grid / cards */
+    .section{ margin-bottom:28px }
+    .section h2{ font-size:1.18rem; margin-bottom:10px; color:var(--text) }
+    .section p{ color:var(--muted); margin-bottom:12px }
+
+    .grid{
+      display:grid;
+      gap:14px;
+    }
+    @media(min-width:700px){ .grid-3{ grid-template-columns:repeat(3, 1fr) } }
+
+    .card{
+      padding:12px;
+      border-radius:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,.01), rgba(0,0,0,.06));
+      border:1px solid rgba(255,255,255,.02);
+      min-height:92px;
+    }
+    .card h3{ margin:0 0 6px; font-size:.98rem }
+    .tag{
+      display:inline-block;
+      margin-top:8px;
+      font-size:.78rem;
+      padding:4px 8px;
+      border-radius:999px;
+      background:rgba(255,255,255,.02);
+      color:var(--muted);
+    }
+
+    footer{
+      border-top:1px solid rgba(148,163,184,.02);
+      padding:18px;
+      text-align:center;
+      color:var(--muted);
+      font-size:.86rem;
+      margin-top:18px;
+    }
+    footer a{ color:var(--accent); text-decoration:none }
+
+    /* Focus styles for accessibility */
+    a:focus, button:focus{ outline:3px solid rgba(56,189,248,.18); outline-offset:2px; border-radius:8px }
+    .hidden{ display:none !important }
+
+    /* small print */
+    .muted-sm{ color:var(--muted); font-size:.86rem }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header>
+    <div class="nav" role="navigation" aria-label="Main navigation">
+      <div class="brand">
+        <div class="logo">BSc Physics Notes</div>
+        <div class="logo-sub">Exam-ready notes · S. Baruah</div>
+      </div>
+
+      <nav class="nav-links" id="mainNav">
+        <a href="#subjects">Subjects</a>
+        <a href="#notes">Notes</a>
+        <a href="#about">About</a>
+        <a class="btn btn-outline" href="https://github.com/baruahsajal/B.Sc-physics-notes-with-me-" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div>
+        <div class="badge" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" style="display:block"><circle cx="5" cy="5" r="5" fill="#22c55e"/></svg> Updated notes for B.Sc students</div>
+        <h1 id="hero-heading" class="h1">Clean, exam-ready Physics & Environmental Science notes</h1>
+        <p class="lead">Concise concept summaries, key derivations and solved examples organized by topic — designed for rapid revision before exams.</p>
+
+        <div class="hero-actions" role="group" aria-label="Primary actions">
+          <a class="btn btn-primary" href="#notes">Browse notes</a>
+          <a class="btn btn-outline" href="https://github.com/baruahsajal/B.Sc-physics-notes-with-me-" target="_blank" rel="noopener noreferrer">Open repository</a>
+        </div>
+
+        <div style="margin-top:18px" class="muted-sm">
+          Tips: Use keyboard (Tab) to navigate links. Want PDFs or topic pages added? Create an issue on the repo.
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-labelledby="study-dashboard" role="region">
+        <div class="hero-chip">Study dashboard</div>
+
+        <div class="preview" role="img" aria-label="Stack of physics books on a desk — illustration"></div>
+
+        <div class="note-card" aria-live="polite">
+          <strong>Today’s focus:</strong> Maxwell’s equations, single-slit diffraction, and first-order ODEs. Short worked examples included.
+        </div>
+      </aside>
+    </section>
+
+    <section id="subjects" class="section" aria-labelledby="subjects-heading">
+      <h2 id="subjects-heading">Subjects covered</h2>
+      <p>Notes will gradually cover all core papers of B.Sc Physics along with Environmental Science components. Each topic will include a short summary, important formulae and solved examples.</p>
+
+      <div class="grid grid-3" style="margin-top:14px">
+        <article class="card" aria-labelledby="em-heading">
+          <h3 id="em-heading">Electromagnetic Theory</h3>
+          <p>Vector calculus, electrostatics and magnetostatics, boundary conditions, Maxwell’s equations and wave propagation.</p>
+        </article>
+
+        <article class="card" aria-labelledby="wo-heading">
+          <h3 id="wo-heading">Waves &amp; Optics</h3>
+          <p>Interference, diffraction, polarisation, lasers and optical instruments with worked problems and diagrams.</p>
+        </article>
+
+        <article class="card" aria-labelledby="de-heading">
+          <h3 id="de-heading">Differential Equations</h3>
+          <p>First- and higher-order ODEs, series solutions, and applications to physical systems like oscillators and circuits.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="notes" class="section" aria-labelledby="notes-heading">
+      <h2 id="notes-heading">Notes sections</h2>
+      <p>Start with any topic below. As the repo grows these can link to separate pages or PDF files stored in the repository for offline study.</p>
+
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
+        <div class="card" role="article" aria-labelledby="em-notes">
+          <h3 id="em-notes">Electromagnetic Theory Notes</h3>
+          <p>Field theory basics, boundary conditions, energy density and Poynting vector. Includes solved problems.</p>
+          <span class="tag">coming soon</span>
+        </div>
+
+        <div class="card" role="article" aria-labelledby="wo-notes">
+          <h3 id="wo-notes">Waves &amp; Optics Notes</h3>
+          <p>Huygens' principle, interference fringes, diffraction patterns and resolving power with examples.</p>
+          <span class="tag">coming soon</span>
+        </div>
+
+        <div class="card" role="article" aria-labelledby="es-notes">
+          <h3 id="es-notes">Environmental Science Notes</h3>
+          <p>Assam's land and people, natural resources, conservation and sustainable practices relevant to coursework.</p>
+          <span class="tag">coming soon</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section" aria-labelledby="about-heading">
+      <h2 id="about-heading">About this project</h2>
+      <p>Created by Sajal Baruah as a personal notes archive and to share clear explanations with other B.Sc students. The site is designed to be simple and fast, hosted on GitHub Pages so updates appear automatically.</p>
+
+      <p class="muted-sm">Want to help? Add notes, fix typos or create topic pages — contributions are welcome via the GitHub repository.</p>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div>© 2025 Sajal Baruah · Hosted on <a href="https://pages.github.com" target="_blank" rel="noopener noreferrer">GitHub Pages</a></div>
+    <div style="margin-top:8px"><a href="https://github.com/baruahsajal/B.Sc-physics-notes-with-me-" target="_blank" rel="noopener noreferrer">Repository</a> · <span class="muted-sm">Made for classroom revision — not a substitute for full textbooks</span></div>
+  </footer>
+
+  <script>
+    // Accessible mobile nav toggle + simple smooth scrolling
+    (function(){
+      const navToggle = document.getElementById('navToggle');
+      const mainNav = document.getElementById('mainNav');
+
+      navToggle && navToggle.addEventListener('click', function(){
+        const expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', String(!expanded));
+        if(mainNav){
+          if(expanded){
+            mainNav.style.display = '';
+          } else {
+            mainNav.style.display = 'flex';
+          }
+        }
+      });
+
+      // Close mobile nav when a nav link is clicked (good UX)
+      mainNav && mainNav.addEventListener('click', function(e){
+        if(e.target.tagName === 'A' && window.innerWidth < 860){
+          if(navToggle){ navToggle.setAttribute('aria-expanded', 'false'); }
+          mainNav.style.display = '';
+        }
+      });
+
+      // Smooth scrolling for in-page links (uses native when available)
+      document.addEventListener('click', function(e){
+        const a = e.target.closest('a[href^="#"]');
+        if(!a) return;
+        const id = a.getAttribute('href').slice(1);
+        const tgt = document.getElementById(id);
+        if(tgt){
+          e.preventDefault();
+          tgt.scrollIntoView({behavior:'smooth',block:'start'});
+          // Move keyboard focus for accessibility
+          tgt.setAttribute('tabindex','-1');
+          tgt.focus({preventScroll:true});
+          // Remove tabindex after a short delay to keep DOM clean
+          setTimeout(()=> tgt.removeAttribute('tabindex'), 1000);
+        }
+      }, false);
+    })();
+  </script>
+</body>
+</html>
