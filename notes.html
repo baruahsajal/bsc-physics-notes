@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Notes Library - BSc Physics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.7;
+            color: #1a202c;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background-attachment: fixed;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(102, 126, 234, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            list-style: none;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 10px 18px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 140px 20px 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Semester Cards */
+        .semester-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .semester-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border-top: 5px solid #667eea;
+        }
+
+        .semester-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
+        }
+
+        .semester-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .semester-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .semester-card h3 {
+            color: #2d3748;
+            font-size: 1.8rem;
+        }
+
+        .course-list {
+            list-style: none;
+        }
+
+        .course-item {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 15px 20px;
+            margin: 12px 0;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .course-item:hover {
+            transform: translateX(5px);
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            border-left-color: #764ba2;
+        }
+
+        .course-code {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .course-name {
+            color: #2d3748;
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .status-completed {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .status-progress {
+            background: #fef5e7;
+            color: #92400e;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            color: white;
+            padding: 40px 20px;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .semester-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="notes.html">📚 Notes</a></li>
+            <li><a href="about.html">👤 About</a></li>
+            <li><a href="index.html#syllabus">📖 Syllabus</a></li>
+            <li><a href="index.html#contact">📞 Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>📚 Physics Notes Library</h1>
+        <p>Comprehensive study materials for BSc Physics (FYUGP 2024-2025)</p>
+    </section>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Semester 1 -->
+        <div class="semester-grid">
+            <div class="semester-card">
+                <div class="semester-header">
+                    <span class="semester-icon">1️⃣</span>
+                    <div>
+                        <h3>Semester 1</h3>
+                        <span class="status-badge status-completed">Completed</span>
+                    </div>
+                </div>
+                <ul class="course-list">
+                    <li class="course-item">
+                        <span class="course-code">PHY0100104</span>
+                        <span class="course-name">Mathematical Physics & Mechanics</span>
+                        <a href="#" class="download-btn">📥 Download Notes</a>
+                    </li>
+                    <li class="course-item">
+                        <span class="course-code">SEC</span>
+                        <span class="course-name">AI in Physics (SWAYAM)</span>
+                        <a href="#" class="download-btn">📥 Download Notes</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Semester 2 -->
+            <div class="semester-card">
+                <div class="semester-header">
+                    <span class="semester-icon">2️⃣</span>
+                    <div>
+                        <h3>Semester 2</h3>
+                        <span class="status-badge status-completed">Completed</span>
+                    </div>
+                </div>
+                <ul class="course-list">
+                    <li class="course-item">
+                        <span class="course-code">PHY0200104</span>
+                        <span class="course-name">Mathematical Physics, Electricity & Magnetism</span>
+                        <a href="#" class="download-btn">📥 Download Notes</a>
+                    </li>
+                    <li class="course-item">
+                        <span class="course-code">SEC</span>
+                        <span class="course-name">Basic Workshop Skills in Physics & Electronics</span>
+                        <a href="#" class="download-btn">📥 Download Notes</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Semester 3 -->
+            <div class="semester-card">
+                <div class="semester-header">
+                    <span class="semester-icon">3️⃣</span>
+                    <div>
+                        <h3>Semester 3</h3>
+                        <span class="status-badge status-progress">In Progress</span>
+                    </div>
+                </div>
+                <ul class="course-list">
+                    <li class="course-item">
+                        <span class="course-code">PHY0300104</span>
+                        <span class="course-name">Waves & Optics</span>
+                        <a href="waves-optics.html" class="download-btn">📝 View Notes</a>
+                    </li>
+                    <li class="course-item">
+                        <span class="course-code">PHY0300204</span>
+                        <span class="course-name">Electromagnetic Theory</span>
+                        <a href="#" class="download-btn">📝 View Notes</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Semester 4 -->
+            <div class="semester-card">
+                <div class="semester-header">
+                    <span class="semester-icon">4️⃣</span>
+                    <div>
+                        <h3>Semester 4</h3>
+                        <span class="status-badge status-progress">Upcoming</span>
+                    </div>
+                </div>
+                <ul class="course-list">
+                    <li class="course-item">
+                        <span class="course-code">PHY0400104</span>
+                        <span class="course-name">Classical Mechanics</span>
+                    </li>
+                    <li class="course-item">
+                        <span class="course-code">PHY0400204</span>
+                        <span class="course-name">Quantum Mechanics-I</span>
+                    </li>
+                    <li class="course-item">
+                        <span class="course-code">PHY0400304</span>
+                        <span class="course-name">Analog Electronics</span>
+                    </li>
+                    <li class="course-item">
+                        <span class="course-code">PHY0400404</span>
+                        <span class="course-name">Mathematical Physics</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Semester 5 -->
+            <div class="semester-card">
+                <div class="semester-header">
+                    <span class="semester-icon">5️⃣</span>
+                    <div>
+                        <h3>Semester 5</h3>
+                        <span class="status-badge status-progress">Upcoming</span>
+                    </div>
+                </div>
+                <ul class="course-list">
+                    <li class="course-item">
+                        <span class="course-code">PHY0500104</span>
+                        <span class="course-name">Atomic & Molecular Physics</span>
+                    </li>
+                    <li class="course-item">
+                        <span class="course-code">PHY0500204</span>
+                        <span class="course-name">Condensed Matter Physics</span>
+                    </li>
+                    <li class="course-item">
+                        <span class="course-code">PHY0500304</span>
+                        <span class="course-name">Heat & Thermodynamics</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Semester 6 -->
+            <div class="semester-card">
+                <div class="semester-header">
+                    <span class="semester-icon">6️⃣</span>
+                    <div>
+                        <h3>Semester 6</h3>
+                        <span class="status-badge status-progress">Upcoming</span>
+                    </div>
+                </div>
+                <ul class="course-list">
+                    <li class="course-item">
+                        <span class="course-code">PHY0600104</span>
+                        <span class="course-name">Nuclear & Particle Physics</span>
+                    </li>
+                    <li class="course-item">
+                        <span class="course-code">PHY0600204</span>
+                        <span class="course-name">Digital Electronics</span>
+                    </li>
+                    <li class="course-item">
+                        <span class="course-code">PHY0600304</span>
+                        <span class="course-name">Astronomy & Astrophysics</span>
+                    </li>
+                    <li class="course-item">
+                        <span class="course-code">PHY0600404</span>
+                        <span class="course-name">Statistical Mechanics</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Physics Notes Portal | Created by BSc Physics Student</p>
+        <p style="margin-top: 10px;">
+            <a href="mailto:sajalbaruah51@gmail.com">Email</a> | 
+            <a href="https://wa.me/919678092519" target="_blank">WhatsApp</a>
+        </p>
+    </footer>
+
+</body>
+</html>
