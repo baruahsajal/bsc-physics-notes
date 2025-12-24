@@ -129,43 +129,45 @@
             font-size: 1.8rem;
         }
 
-        .course-list {
-            list-style: none;
-        }
-
-        .course-item {
+        /* Course Section */
+        .course-section {
+            margin-bottom: 30px;
+            padding: 20px;
             background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-            padding: 15px 20px;
-            margin: 12px 0;
             border-radius: 12px;
             border-left: 4px solid #667eea;
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
-        .course-item:hover {
+        .course-section:hover {
             transform: translateX(5px);
             background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
             border-left-color: #764ba2;
+        }
+
+        .course-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
         }
 
         .course-code {
             font-weight: 700;
             color: #667eea;
             font-size: 0.9rem;
-            display: block;
-            margin-bottom: 5px;
         }
 
         .course-name {
             color: #2d3748;
-            font-size: 1.05rem;
-            font-weight: 500;
+            font-size: 1.2rem;
+            font-weight: 600;
+            flex-grow: 1;
+            margin-left: 10px;
         }
 
-        .download-btn {
+        .download-btn, .view-btn {
             display: inline-block;
-            margin-top: 10px;
             padding: 8px 16px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
@@ -176,9 +178,36 @@
             transition: all 0.3s ease;
         }
 
-        .download-btn:hover {
+        .download-btn:hover, .view-btn:hover {
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Unit Section */
+        .unit-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .unit-header {
+            font-size: 1.1rem;
+            color: #764ba2;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        .topics-list {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .topics-list li {
+            margin-bottom: 5px;
+            color: #4a5568;
         }
 
         /* Status Badge */
@@ -220,9 +249,19 @@
             .hero h1 {
                 font-size: 2rem;
             }
-            
+
             .semester-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .course-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .course-name {
+                margin-left: 0;
+                margin-top: 5px;
             }
         }
     </style>
@@ -259,18 +298,68 @@
                         <span class="status-badge status-completed">Completed</span>
                     </div>
                 </div>
-                <ul class="course-list">
-                    <li class="course-item">
-                        <span class="course-code">PHY0100104</span>
-                        <span class="course-name">Mathematical Physics & Mechanics</span>
+
+                <!-- Course 1: Mathematical Physics & Mechanics -->
+                <div class="course-section">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">PHY0100104</span>
+                            <span class="course-name">Mathematical Physics & Mechanics</span>
+                        </div>
                         <a href="#" class="download-btn">📥 Download Notes</a>
-                    </li>
-                    <li class="course-item">
-                        <span class="course-code">SEC</span>
-                        <span class="course-name">AI in Physics (SWAYAM)</span>
+                    </div>
+                    <div class="unit-section">
+                        <h4 class="unit-header">Unit I: Vector Calculus</h4>
+                        <ul class="topics-list">
+                            <li>Scalar and vector fields</li>
+                            <li>Derivatives of vector functions (physical examples - velocity, centripetal acceleration)</li>
+                            <li>Directional derivative</li>
+                            <li>Gradient of a scalar field</li>
+                            <li>Divergence and curl of a vector field</li>
+                            <li>Vector identities</li>
+                            <li>Vector integration - Line, surface, and volume integrals</li>
+                            <li>Gauss’s divergence theorem and Stokes’s theorem</li>
+                        </ul>
+                    </div>
+                    <div class="unit-section">
+                        <h4 class="unit-header">Unit II: Curvilinear Coordinates</h4>
+                        <ul class="topics-list">
+                            <li>Introduction to curvilinear coordinates</li>
+                            <li>Orthogonal curvilinear coordinates</li>
+                            <li>Examples: spherical, cylindrical, and plane polar coordinates</li>
+                            <li>Line element transformation from Cartesian</li>
+                            <li>Gradient, divergence, and curl in spherical and cylindrical coordinates</li>
+                        </ul>
+                    </div>
+                    <div class="unit-section">
+                        <h4 class="unit-header">Unit III: Dirac Delta Function</h4>
+                        <ul class="topics-list">
+                            <li>Definition and properties</li>
+                            <li>Representation by Gaussian, rectangular function, and Laplacian of 1/r</li>
+                            <li>3-Dimensional delta function</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Course 2: AI in Physics (SWAYAM) -->
+                <div class="course-section">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">SEC</span>
+                            <span class="course-name">AI in Physics (SWAYAM)</span>
+                        </div>
                         <a href="#" class="download-btn">📥 Download Notes</a>
-                    </li>
-                </ul>
+                    </div>
+                    <div class="unit-section">
+                        <h4 class="unit-header">Unit I: Introduction to AI</h4>
+                        <ul class="topics-list">
+                            <li>Basics of Artificial Intelligence</li>
+                            <li>Machine Learning Fundamentals</li>
+                            <li>Applications in Physics Simulations</li>
+                        </ul>
+                    </div>
+                    <!-- Add more units as needed -->
+                </div>
             </div>
 
             <!-- Semester 2 -->
@@ -282,18 +371,50 @@
                         <span class="status-badge status-completed">Completed</span>
                     </div>
                 </div>
-                <ul class="course-list">
-                    <li class="course-item">
-                        <span class="course-code">PHY0200104</span>
-                        <span class="course-name">Mathematical Physics, Electricity & Magnetism</span>
+
+                <!-- Course 1: Mathematical Physics, Electricity & Magnetism -->
+                <div class="course-section">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">PHY0200104</span>
+                            <span class="course-name">Mathematical Physics, Electricity & Magnetism</span>
+                        </div>
                         <a href="#" class="download-btn">📥 Download Notes</a>
-                    </li>
-                    <li class="course-item">
-                        <span class="course-code">SEC</span>
-                        <span class="course-name">Basic Workshop Skills in Physics & Electronics</span>
+                    </div>
+                    <div class="unit-section">
+                        <h4 class="unit-header">Unit I: Differential Equations</h4>
+                        <ul class="topics-list">
+                            <li>First and second order ordinary differential equations (ODE)</li>
+                            <li>Solutions using integrating factors</li>
+                            <li>Physical examples: radioactive decay, Newton's law of cooling</li>
+                            <li>Second order ODE with constant coefficients</li>
+                            <li>Partial differential equations (PDE) introduction</li>
+                        </ul>
+                    </div>
+                    <div class="unit-section">
+                        <h4 class="unit-header">Unit II: Matrices</h4>
+                        <ul class="topics-list">
+                            <li>Properties of matrices, determinant, and rank</li>
+                            <li>Hermitian, unitary, and orthogonal matrices</li>
+                            <li>Eigenvalues and eigenvectors</li>
+                            <li>Cayley-Hamilton Theorem</li>
+                            <li>Diagonalisation of matrices</li>
+                        </ul>
+                    </div>
+                    <!-- Add more units for Electricity & Magnetism based on syllabus -->
+                </div>
+
+                <!-- Course 2: Basic Workshop Skills -->
+                <div class="course-section">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">SEC</span>
+                            <span class="course-name">Basic Workshop Skills in Physics & Electronics</span>
+                        </div>
                         <a href="#" class="download-btn">📥 Download Notes</a>
-                    </li>
-                </ul>
+                    </div>
+                    <!-- Units for workshop skills -->
+                </div>
             </div>
 
             <!-- Semester 3 -->
@@ -305,18 +426,64 @@
                         <span class="status-badge status-progress">In Progress</span>
                     </div>
                 </div>
-                <ul class="course-list">
-                    <li class="course-item">
-                        <span class="course-code">PHY0300104</span>
-                        <span class="course-name">Waves & Optics</span>
-                        <a href="waves-optics.html" class="download-btn">📝 View Notes</a>
-                    </li>
-                    <li class="course-item">
-                        <span class="course-code">PHY0300204</span>
-                        <span class="course-name">Electromagnetic Theory</span>
-                        <a href="#" class="download-btn">📝 View Notes</a>
-                    </li>
-                </ul>
+
+                <!-- Course 1: Waves & Optics -->
+                <div class="course-section">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">PHY0300104</span>
+                            <span class="course-name">Waves & Optics</span>
+                        </div>
+                        <a href="waves-optics.html" class="view-btn">📝 View Notes</a>
+                    </div>
+                    <div class="unit-section">
+                        <h4 class="unit-header">Unit I: Superposition of Harmonic Oscillations</h4>
+                        <ul class="topics-list">
+                            <li>Superposition principle</li>
+                            <li>Superposition of two collinear oscillations</li>
+                            <li>Beats and Lissajous figures</li>
+                        </ul>
+                    </div>
+                    <div class="unit-section">
+                        <h4 class="unit-header">Unit II: Wave Motion</h4>
+                        <ul class="topics-list">
+                            <li>Progressive waves and wave equation</li>
+                            <li>Longitudinal and transverse waves</li>
+                            <li>Dispersion, group and phase velocity</li>
+                            <li>Energy transport and intensity</li>
+                        </ul>
+                    </div>
+                    <div class="unit-section">
+                        <h4 class="unit-header">Unit III: Velocity of Waves</h4>
+                        <ul class="topics-list">
+                            <li>Velocity of transverse vibrations on strings</li>
+                            <li>Velocity of longitudinal waves in fluids</li>
+                            <li>Newton’s and Laplace’s formulas for sound velocity</li>
+                        </ul>
+                    </div>
+                    <!-- Continue with more units: Superposition, Interference, Diffraction, Polarization -->
+                </div>
+
+                <!-- Course 2: Electromagnetic Theory -->
+                <div class="course-section">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">PHY0300204</span>
+                            <span class="course-name">Electromagnetic Theory</span>
+                        </div>
+                        <a href="#" class="view-btn">📝 View Notes</a>
+                    </div>
+                    <!-- Add units and topics for Electromagnetic Theory from syllabus -->
+                    <div class="unit-section">
+                        <h4 class="unit-header">Unit I: Electrostatics</h4>
+                        <ul class="topics-list">
+                            <li>Coulomb's law and electric field</li>
+                            <li>Gauss's law</li>
+                            <li>Electric potential</li>
+                        </ul>
+                    </div>
+                    <!-- Placeholder for more -->
+                </div>
             </div>
 
             <!-- Semester 4 -->
@@ -328,91 +495,44 @@
                         <span class="status-badge status-progress">Upcoming</span>
                     </div>
                 </div>
-                <ul class="course-list">
-                    <li class="course-item">
-                        <span class="course-code">PHY0400104</span>
-                        <span class="course-name">Classical Mechanics</span>
-                    </li>
-                    <li class="course-item">
-                        <span class="course-code">PHY0400204</span>
-                        <span class="course-name">Quantum Mechanics-I</span>
-                    </li>
-                    <li class="course-item">
-                        <span class="course-code">PHY0400304</span>
-                        <span class="course-name">Analog Electronics</span>
-                    </li>
-                    <li class="course-item">
-                        <span class="course-code">PHY0400404</span>
-                        <span class="course-name">Mathematical Physics</span>
-                    </li>
-                </ul>
-            </div>
 
-            <!-- Semester 5 -->
-            <div class="semester-card">
-                <div class="semester-header">
-                    <span class="semester-icon">5️⃣</span>
-                    <div>
-                        <h3>Semester 5</h3>
-                        <span class="status-badge status-progress">Upcoming</span>
+                <!-- Course 1: Classical Mechanics -->
+                <div class="course-section">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">PHY0400104</span>
+                            <span class="course-name">Classical Mechanics</span>
+                        </div>
                     </div>
-                </div>
-                <ul class="course-list">
-                    <li class="course-item">
-                        <span class="course-code">PHY0500104</span>
-                        <span class="course-name">Atomic & Molecular Physics</span>
-                    </li>
-                    <li class="course-item">
-                        <span class="course-code">PHY0500204</span>
-                        <span class="course-name">Condensed Matter Physics</span>
-                    </li>
-                    <li class="course-item">
-                        <span class="course-code">PHY0500304</span>
-                        <span class="course-name">Heat & Thermodynamics</span>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Semester 6 -->
-            <div class="semester-card">
-                <div class="semester-header">
-                    <span class="semester-icon">6️⃣</span>
-                    <div>
-                        <h3>Semester 6</h3>
-                        <span class="status-badge status-progress">Upcoming</span>
+                    <div class="unit-section">
+                        <h4 class="unit-header">Unit I: Lagrangian Approach</h4>
+                        <ul class="topics-list">
+                            <li>Constrained motion and degrees of freedom</li>
+                            <li>Lagrange’s equations</li>
+                            <li>Applications to pendulums and central forces</li>
+                        </ul>
                     </div>
+                    <!-- More units -->
                 </div>
-                <ul class="course-list">
-                    <li class="course-item">
-                        <span class="course-code">PHY0600104</span>
-                        <span class="course-name">Nuclear & Particle Physics</span>
-                    </li>
-                    <li class="course-item">
-                        <span class="course-code">PHY0600204</span>
-                        <span class="course-name">Digital Electronics</span>
-                    </li>
-                    <li class="course-item">
-                        <span class="course-code">PHY0600304</span>
-                        <span class="course-name">Astronomy & Astrophysics</span>
-                    </li>
-                    <li class="course-item">
-                        <span class="course-code">PHY0600404</span>
-                        <span class="course-name">Statistical Mechanics</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
 
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Physics Notes Portal | Created by BSc Physics Student</p>
-        <p style="margin-top: 10px;">
-            <a href="mailto:sajalbaruah51@gmail.com">Email</a> | 
-            <a href="https://wa.me/919678092519" target="_blank">WhatsApp</a>
-        </p>
-    </footer>
-
-</body>
-</html>
+                <!-- Other courses for Sem 4 with similar structure -->
+                <div class="course-section">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">PHY0400204</span>
+                            <span class="course-name">Quantum Mechanics-I</span>
+                        </div>
+                    </div>
+                    <!-- Units for QM -->
+                </div>
+                <div class="course-section">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">PHY0400304</span>
+                            <span class="course-name">Analog Electronics</span>
+                        </div>
+                    </div>
+                    <!-- Units -->
+                </div>
+                <div class="course-section">
+                 
