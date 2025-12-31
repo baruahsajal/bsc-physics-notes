@@ -4,7 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Physics Portal - The Fundamental Science</title>
+    <!-- Futuristic Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
+        /* --- DARK FUTURISTIC THEME --- */
+        :root {
+            --bg-color: #0a0a0f;
+            --card-bg: #13131f;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0b0;
+            --accent-cyan: #00f3ff;
+            --accent-green: #00ff9d;
+            --accent-purple: #bd00ff;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -17,16 +34,49 @@
         }
 
         body {
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Rajdhani', sans-serif;
             line-height: 1.7;
-            color: #1a202c;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            background-attachment: fixed;
+            color: var(--text-primary);
+            background-color: var(--bg-color);
+            overflow-x: hidden;
         }
 
-        /* Navigation with Glassmorphism */
+        /* Futuristic Grid Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03), rgba(0, 255, 157, 0.03));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Animated Particles */
+        body::after {
+            content: '';
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: radial-gradient(circle at 20% 50%, rgba(0, 243, 255, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 80%, rgba(0, 255, 157, 0.05) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* --- NAVIGATION --- */
         nav {
-            background: rgba(102, 126, 234, 0.85);
+            background: rgba(10, 10, 15, 0.95);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             padding: 1rem 0;
@@ -34,8 +84,8 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px rgba(0, 243, 255, 0.2);
+            border-bottom: 2px solid var(--accent-cyan);
         }
 
         nav ul {
@@ -54,7 +104,7 @@
         }
 
         nav a {
-            color: white;
+            color: var(--accent-cyan);
             text-decoration: none;
             font-weight: 600;
             font-size: 0.9rem;
@@ -64,22 +114,27 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            border: 1px solid transparent;
+            font-family: 'Orbitron', sans-serif;
         }
 
         nav a:hover {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(0, 243, 255, 0.1);
+            border-color: var(--accent-cyan);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 243, 255, 0.3);
+            text-shadow: 0 0 10px var(--accent-cyan);
         }
 
-        /* Hero Section with Particle Effect */
+        /* --- HERO SECTION --- */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
             color: white;
             padding: 140px 20px 80px;
             text-align: center;
             position: relative;
             overflow: hidden;
+            border-bottom: 3px solid var(--accent-cyan);
         }
 
         .hero::before {
@@ -89,14 +144,13 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="50" r="1.5" fill="rgba(255,255,255,0.15)"/></svg>');
-            animation: float 20s linear infinite;
-            opacity: 0.3;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 243, 255, 0.1) 0%, transparent 70%);
+            animation: heroGlow 4s ease-in-out infinite;
         }
 
-        @keyframes float {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-100px); }
+        @keyframes heroGlow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
         }
 
         .hero-content {
@@ -107,9 +161,11 @@
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 20px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 0 20px var(--accent-cyan), 0 0 40px var(--accent-cyan);
             animation: fadeInDown 1s ease;
-            letter-spacing: -1px;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent-cyan);
         }
 
         .hero .subtitle {
@@ -118,12 +174,14 @@
             margin-bottom: 30px;
             opacity: 0.95;
             animation: fadeInUp 1s ease 0.2s both;
+            color: var(--accent-green);
         }
 
         .physics-symbol {
             font-size: 5rem;
             margin: 20px 0;
             animation: rotate3d 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px var(--accent-cyan));
         }
 
         @keyframes rotate3d {
@@ -153,23 +211,23 @@
             }
         }
 
-        /* Container */
+        /* --- CONTAINER --- */
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 60px 20px;
         }
 
-        /* Section Styling with Physics Symbols */
+        /* --- SECTION STYLING --- */
         section {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--card-bg);
             backdrop-filter: blur(10px);
             margin: 40px 0;
             padding: 50px 40px;
             border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: var(--glass-border);
             position: relative;
             overflow: hidden;
         }
@@ -183,11 +241,24 @@
             top: -50px;
             font-weight: bold;
             pointer-events: none;
+            color: var(--accent-cyan);
+        }
+
+        section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-cyan), var(--accent-green), var(--accent-purple));
+            box-shadow: 0 0 10px var(--accent-cyan);
         }
 
         section:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.15);
+            box-shadow: 0 20px 60px rgba(0, 243, 255, 0.3);
+            border-color: rgba(0, 243, 255, 0.3);
         }
 
         .section-header {
@@ -199,24 +270,27 @@
 
         .section-icon {
             font-size: 3.5rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: pulse 2s ease-in-out infinite;
+            animation: iconPulse 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px var(--accent-cyan));
         }
 
-        @keyframes pulse {
+        @keyframes iconPulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.1); }
         }
 
         h2 {
-            color: #2d3748;
+            color: var(--accent-cyan);
             font-size: 2.5rem;
             font-weight: 700;
             flex: 1;
             position: relative;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
         }
 
         h2::after {
@@ -226,25 +300,27 @@
             left: 0;
             width: 100px;
             height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green));
             border-radius: 2px;
+            box-shadow: 0 0 10px var(--accent-cyan);
         }
 
         h3 {
-            color: #667eea;
+            color: var(--accent-green);
             font-size: 1.8rem;
             margin: 30px 0 20px 0;
             font-weight: 600;
+            text-shadow: 0 0 5px rgba(0, 255, 157, 0.3);
         }
 
         p {
             font-size: 1.1rem;
-            color: #4a5568;
+            color: var(--text-secondary);
             line-height: 1.8;
             margin: 15px 0;
         }
 
-        /* Cards Grid */
+        /* --- CARDS GRID --- */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -253,10 +329,10 @@
         }
 
         .card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), rgba(0, 255, 157, 0.1));
             padding: 40px 30px;
             border-radius: 20px;
-            color: white;
+            border: 1px solid rgba(0, 243, 255, 0.3);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
@@ -270,93 +346,108 @@
             right: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 243, 255, 0.2) 0%, transparent 70%);
             transition: all 0.6s ease;
+            opacity: 0;
         }
 
         .card:hover::before {
+            opacity: 1;
             top: -100%;
             right: -100%;
         }
 
         .card:hover {
             transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 20px 50px rgba(0, 243, 255, 0.4);
+            border-color: var(--accent-cyan);
         }
 
         .card-icon {
             font-size: 3rem;
             margin-bottom: 20px;
             display: block;
+            filter: drop-shadow(0 0 10px var(--accent-cyan));
         }
 
         .card h3 {
-            color: white;
+            color: var(--accent-cyan);
             margin: 0 0 15px 0;
             font-size: 1.5rem;
         }
 
         .card p {
-            color: rgba(255, 255, 255, 0.95);
+            color: var(--text-primary);
             font-size: 1.05rem;
             line-height: 1.7;
         }
 
-        /* Modern Table Design */
+        /* --- MODERN TABLE --- */
         .modern-table {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
             margin: 40px 0;
-            background: white;
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 243, 255, 0.2);
         }
 
         .modern-table thead {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.2), rgba(0, 255, 157, 0.2));
+            border-bottom: 2px solid var(--accent-cyan);
         }
 
         .modern-table th {
-            color: white;
+            color: var(--accent-cyan);
             padding: 20px;
             text-align: left;
             font-weight: 600;
             font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            font-family: 'Orbitron', sans-serif;
         }
 
         .modern-table td {
             padding: 20px;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             vertical-align: top;
             font-size: 1.05rem;
+            color: var(--text-secondary);
         }
 
         .modern-table tbody tr {
             transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.2);
         }
 
         .modern-table tbody tr:nth-child(even) {
-            background: #f7fafc;
+            background: rgba(0, 243, 255, 0.03);
         }
 
         .modern-table tbody tr:hover {
-            background: linear-gradient(90deg, #edf2f7, #e6fffa);
+            background: linear-gradient(90deg, rgba(0, 243, 255, 0.1), rgba(0, 255, 157, 0.1));
             transform: scale(1.01);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
         }
 
-        /* Quote Box with Modern Design */
+        .modern-table td:first-child {
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        /* --- QUOTE BOX --- */
         .quote-modern {
-            background: linear-gradient(135deg, #e0e7ff 0%, #fce7f3 100%);
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), rgba(189, 0, 255, 0.1));
             padding: 35px 40px;
             margin: 30px 0;
-            border-left: 6px solid #667eea;
+            border-left: 6px solid var(--accent-cyan);
             border-radius: 16px;
             position: relative;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 243, 255, 0.2);
         }
 
         .quote-modern::before {
@@ -365,14 +456,14 @@
             top: 10px;
             left: 15px;
             font-size: 4rem;
-            color: rgba(102, 126, 234, 0.2);
+            color: rgba(0, 243, 255, 0.2);
             font-family: Georgia, serif;
         }
 
         .quote-modern p {
             font-size: 1.2rem;
             font-style: italic;
-            color: #2d3748;
+            color: var(--text-primary);
             margin-bottom: 15px;
             padding-left: 30px;
         }
@@ -380,58 +471,11 @@
         .quote-author {
             text-align: right;
             font-weight: 700;
-            color: #667eea;
+            color: var(--accent-green);
             font-size: 1.1rem;
         }
 
-        /* Timeline Design */
-        .timeline {
-            position: relative;
-            padding: 30px 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(180deg, #667eea, #764ba2);
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            display: flex;
-            margin: 40px 0;
-            position: relative;
-        }
-
-        .timeline-item:nth-child(odd) {
-            flex-direction: row-reverse;
-        }
-
-        .timeline-content {
-            width: calc(50% - 40px);
-            background: white;
-            padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        .timeline-marker {
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 0 6px rgba(102, 126, 234, 0.2);
-        }
-
-        /* Statistics Section */
+        /* --- STATS GRID --- */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -442,34 +486,36 @@
         .stat-box {
             text-align: center;
             padding: 35px 20px;
-            background: white;
+            background: rgba(0, 243, 255, 0.05);
             border-radius: 16px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
-            border-top: 4px solid #667eea;
+            border: 1px solid rgba(0, 243, 255, 0.3);
         }
 
         .stat-box:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+            box-shadow: 0 15px 40px rgba(0, 243, 255, 0.4);
+            border-color: var(--accent-cyan);
         }
 
         .stat-number {
             font-size: 3rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
         }
 
         .stat-label {
             font-size: 1.1rem;
-            color: #4a5568;
+            color: var(--text-secondary);
             font-weight: 500;
         }
 
-        /* Resources Section */
+        /* --- RESOURCES SECTION --- */
         .resource-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -478,45 +524,47 @@
         }
 
         .resource-item {
-            background: white;
+            background: rgba(0, 243, 255, 0.05);
             padding: 25px;
             border-radius: 12px;
-            border-left: 4px solid #667eea;
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--accent-green);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
         }
 
         .resource-item:hover {
             transform: translateX(5px);
-            box-shadow: 0 5px 25px rgba(102, 126, 234, 0.15);
+            box-shadow: 0 5px 25px rgba(0, 243, 255, 0.3);
+            background: rgba(0, 243, 255, 0.1);
         }
 
         .resource-item h4 {
-            color: #667eea;
+            color: var(--accent-cyan);
             margin-bottom: 10px;
             font-size: 1.2rem;
         }
 
         .resource-item a {
-            color: #764ba2;
+            color: var(--accent-green);
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s ease;
         }
 
         .resource-item a:hover {
-            color: #667eea;
-            text-decoration: underline;
+            color: var(--accent-cyan);
+            text-shadow: 0 0 10px var(--accent-cyan);
         }
 
-        /* Footer Modern Design */
+        /* --- FOOTER --- */
         footer {
-            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-            color: white;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            color: var(--text-primary);
             padding: 60px 20px 30px;
             margin-top: 80px;
             position: relative;
             overflow: hidden;
+            border-top: 3px solid var(--accent-cyan);
         }
 
         footer::before {
@@ -526,7 +574,8 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green), var(--accent-purple));
+            box-shadow: 0 0 20px var(--accent-cyan);
         }
 
         .footer-content {
@@ -542,9 +591,10 @@
         }
 
         .footer-section h4 {
-            color: #667eea;
+            color: var(--accent-cyan);
             font-size: 1.3rem;
             margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
         }
 
         .footer-links {
@@ -556,25 +606,26 @@
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-secondary);
             text-decoration: none;
             transition: all 0.3s ease;
             display: inline-block;
         }
 
         .footer-links a:hover {
-            color: #667eea;
+            color: var(--accent-cyan);
             transform: translateX(5px);
+            text-shadow: 0 0 10px var(--accent-cyan);
         }
 
         .copyright {
             text-align: center;
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
         }
 
-        /* Responsive Design */
+        /* --- RESPONSIVE DESIGN --- */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.2rem;
@@ -589,39 +640,25 @@
                 font-size: 2rem;
             }
 
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item {
-                flex-direction: row !important;
-                padding-left: 50px;
-            }
-
-            .timeline-content {
-                width: 100%;
-            }
-
-            .timeline-marker {
-                left: 20px;
-            }
-
             nav a {
                 font-size: 0.8rem;
                 padding: 8px 12px;
+            }
+
+            .physics-symbol {
+                font-size: 3rem;
             }
         }
     </style>
 </head>
 <body>
-
     <!-- Fixed Navigation -->
     <nav>
         <ul>
             <li><a href="#home">⚛️ Home</a></li>
- <li><a href="notes.html">📚 Notes</a></li>  
- <li><a href="common courses.html">📚 common course</a></li>  <!-- ADD THIS --><!-- ADD THIS -->
-        <li><a href="about.html">👤 About</a></li>  <!-- ADD THIS -->
+            <li><a href="notes.html">📚 Notes</a></li>  
+            <li><a href="common courses.html">📚 Common Course</a></li>
+            <li><a href="about.html">👤 About</a></li>
             <li><a href="#about">📖 About</a></li>
             <li><a href="#importance">✨ Importance</a></li>
             <li><a href="#branches">🔬 Branches</a></li>
@@ -633,16 +670,15 @@
             <li><a href="#contact">📞 Contact</a></li>
         </ul>
     </nav>
-
-    <!-- Hero Section -->
+<!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="physics-symbol">⚛️</div>
             <h1>The World of Physics</h1>
             <p class="subtitle">Exploring the Fundamental Laws Governing Our Universe</p>
-            <div class="quote-modern" style="background: rgba(255,255,255,0.15); border-color: white; max-width: 800px; margin: 40px auto;">
+            <div class="quote-modern" style="background: rgba(0, 243, 255, 0.1); border-color: var(--accent-cyan); max-width: 800px; margin: 40px auto;">
                 <p style="color: white; padding-left: 0;">"The laws of physics are the canvas God laid down on which to paint his masterpiece."</p>
-                <p class="quote-author" style="color: white;">— Dan Brown</p>
+                <p class="quote-author" style="color: var(--accent-green);">— Dan Brown</p>
             </div>
         </div>
     </section>
@@ -657,13 +693,13 @@
                 <h2>What is Physics?</h2>
             </div>
             <p>
-                Physics is the <strong>fundamental science</strong> that seeks to understand how the universe works at every scale [web:1]. 
+                Physics is the <strong>fundamental science</strong> that seeks to understand how the universe works at every scale. 
                 From the quantum realm of subatomic particles to the cosmic expanse of galaxies, physics provides the mathematical 
                 and conceptual framework for comprehending matter, energy, space, and time.
             </p>
             <p>
                 It serves as the foundation upon which all natural sciences are built, bridging theoretical knowledge with 
-                practical applications that define our modern technological civilization [web:7]. Physics not only explains 
+                practical applications that define our modern technological civilization. Physics not only explains 
                 natural phenomena but also enables us to predict, control, and harness the forces of nature.
             </p>
 
@@ -698,13 +734,13 @@
                 <div class="card">
                     <span class="card-icon">💻</span>
                     <h3>Technological Innovation</h3>
-                    <p>Physics drives technological progress that defines modern civilization [web:4].</p>
+                    <p>Physics drives technological progress that defines modern civilization.</p>
                 </div>
 
                 <div class="card">
                     <span class="card-icon">🌱</span>
                     <h3>Solving Global Challenges</h3>
-                    <p>Physics plays a crucial role in addressing climate change, developing renewable energy technologies, and creating sustainable solutions for humanity's future [web:8].</p>
+                    <p>Physics plays a crucial role in addressing climate change, developing renewable energy technologies, and creating sustainable solutions for humanity's future.</p>
                 </div>
 
                 <div class="card">
@@ -827,7 +863,7 @@
             </div>
             <p style="text-align: center; font-size: 1.2rem; margin-bottom: 40px;">
                 <strong>FYUGP Program - Physics Department</strong><br>
-                <span style="color: #667eea;">2024 and 2025 Batch</span>
+                <span style="color: var(--accent-green);">2024 and 2025 Batch</span>
             </p>
 
             <table class="modern-table">
@@ -841,39 +877,39 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td style="font-weight: 700;">First</td>
+                        <td>First</td>
                         <td>PHY0100104 - Mathematical Physics & Mechanics</td>
                         <td>PHY0100104 - Mathematical Physics & Mechanics</td>
                         <td>AI in Physics (SWAYAM)</td>
                     </tr>
                     <tr>
-                        <td style="font-weight: 700;">Second</td>
+                        <td>Second</td>
                         <td>PHY0200104 - Mathematical Physics, Electricity & Magnetism</td>
                         <td>PHY0200104 - Mathematical Physics, Electricity & Magnetism</td>
                         <td>Basic Workshop Skills in Physics & Electronics</td>
                     </tr>
                     <tr>
-                        <td style="font-weight: 700;">Third</td>
+                        <td>Third</td>
                         <td>PHY0300104 - Waves & Optics<br>PHY0300204 - Electromagnetic Theory</td>
                         <td>PHY0300104 - Waves & Optics</td>
                         <td>—</td>
                     </tr>
                     <tr>
-                        <td style="font-weight: 700;">Fourth</td>
+                        <td>Fourth</td>
                         <td>PHY0400104 - Classical Mechanics<br>PHY0400204 - Quantum Mechanics-I<br>
                             PHY0400304 - Analog Electronics<br>PHY0400404 - Mathematical Physics</td>
                         <td>PHY0400304 - Analog Electronics</td>
                         <td>—</td>
                     </tr>
                     <tr>
-                        <td style="font-weight: 700;">Fifth</td>
+                        <td>Fifth</td>
                         <td>PHY0500104 - Atomic & Molecular Physics<br>PHY0500204 - Condensed Matter Physics<br>
                             PHY0500304 - Heat & Thermodynamics</td>
                         <td>PHY0500304 - Heat & Thermodynamics</td>
                         <td>—</td>
                     </tr>
                     <tr>
-                        <td style="font-weight: 700;">Sixth</td>
+                        <td>Sixth</td>
                         <td>PHY0600104 - Nuclear & Particle Physics<br>PHY0600204 - Digital Electronics<br>
                             PHY0600304 - Astronomy & Astrophysics<br>PHY0600404 - Statistical Mechanics</td>
                         <td>PHY0600204 - Digital Electronics</td>
@@ -882,7 +918,8 @@
                 </tbody>
             </table>
         </section>
-<!-- Research Areas Section -->
+
+        <!-- Research Areas Section -->
         <section id="research" data-symbol="λ">
             <div class="section-header">
                 <span class="section-icon">🧪</span>
@@ -893,7 +930,7 @@
                 <div class="card">
                     <span class="card-icon">🔮</span>
                     <h3>Quantum Computing</h3>
-                    <p>Developing quantum algorithms, error correction, and building scalable quantum computers that could revolutionize computation [web:4].</p>
+                    <p>Developing quantum algorithms, error correction, and building scalable quantum computers that could revolutionize computation.</p>
                 </div>
 
                 <div class="card">
@@ -927,8 +964,7 @@
                 </div>
             </div>
         </section>
-
-        <!-- Career Paths Section -->
+<!-- Career Paths Section -->
         <section id="careers" data-symbol="ℏ">
             <div class="section-header">
                 <span class="section-icon">💼</span>
@@ -947,7 +983,7 @@
                 </div>
                 <div class="resource-item">
                     <h4>ISRO/DRDO Scientist</h4>
-                    <p>Join India's premier space and defense research organizations. Work on satellites, missiles, and advanced technologies [web:10].</p>
+                    <p>Join India's premier space and defense research organizations. Work on satellites, missiles, and advanced technologies.</p>
                 </div>
             </div>
 
@@ -1056,7 +1092,7 @@
                 </div>
                 <div class="resource-item">
                     <h4>Python for Physics</h4>
-                    <p>Learn computational physics using NumPy, SciPy, and Matplotlib libraries [web:10].</p>
+                    <p>Learn computational physics using NumPy, SciPy, and Matplotlib libraries.</p>
                 </div>
                 <div class="resource-item">
                     <h4>Mathematica/MATLAB</h4>
@@ -1092,82 +1128,55 @@
             </div>
 
             <div class="quote-modern">
-                <p>"Somewhere, something incredible is waiting to be known."</p>
-                <p class="quote-author">— Carl Sagan</p>
-            </div>
-
-            <div class="quote-modern">
-                <p>"The principles of physics, as far as I can see, do not speak against the possibility of maneuvering things atom by atom."</p>
-                <p class="quote-author">— Richard Feynman</p>
-            </div>
-
-            <div class="quote-modern">
                 <p>"Everything is theoretically impossible, until it is done."</p>
                 <p class="quote-author">— Robert A. Heinlein</p>
-            </div>
-
-            <div class="quote-modern">
-                <p>"The important thing is not to stop questioning. Curiosity has its own reason for existence."</p>
-                <p class="quote-author">— Albert Einstein</p>
             </div>
         </section>
 
     </div>
 
     <!-- Footer -->
-    <footer id="contact">
+    <footer>
         <div class="footer-content">
             <div class="footer-grid">
                 <div class="footer-section">
                     <h4>⚛️ Physics Portal</h4>
-                    <p>Exploring the fundamental laws of nature through education, research, and innovation.</p>
-                    <p style="margin-top: 20px; color: rgba(255,255,255,0.8);">
-                        "Physics is the universe's operating system."
-                    </p>
+                    <p>Your gateway to understanding the fundamental laws of the universe.</p>
                 </div>
-
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
                         <li><a href="#about">About Physics</a></li>
                         <li><a href="#branches">Branches</a></li>
-                        <li><a href="#syllabus">Syllabus</a></li>
-                        <li><a href="#research">Research</a></li>
                         <li><a href="#careers">Careers</a></li>
+                        <li><a href="#resources">Resources</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-section">
-                    <h4>Resources</h4>
+                    <h4>Study Materials</h4>
                     <ul class="footer-links">
-                        <li><a href="#resources">Study Materials</a></li>
-                        <li><a href="https://arxiv.org" target="_blank">Research Papers</a></li>
-                        <li><a href="https://phet.colorado.edu" target="_blank">Simulations</a></li>
-                        <li><a href="https://swayam.gov.in" target="_blank">Online Courses</a></li>
+                        <li><a href="notes.html">Course Notes</a></li>
+                        <li><a href="common courses.html">Common Courses</a></li>
+                        <li><a href="#syllabus">Syllabus</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-section">
                     <h4>Connect</h4>
                     <ul class="footer-links">
-                        <li><a href="mailto: sajalbaruah65@gmail.com">📧 Email</a></li>
-                        <li><a href="https://github.com/baruahsajal" target="_blank">💻 GitHub</a></li>
-                        <li><a href="https://linkedin.com/in/yourprofile" target="_blank">🔗 LinkedIn</a></li>
-                        <li>
-            <a href="https://wa.me/919678092519" target="_blank"> 💬 WhatsApp</a>
-</li>
+                        <li><a href="about.html">About Me</a></li>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Instagram</a></li>
                     </ul>
                 </div>
             </div>
-
             <div class="copyright">
-                <p>© 2025 Physics Portal | Designed with ⚛️ for Physics Enthusiasts | Last Updated: December 2025</p>
-                <p style="margin-top: 10px; font-size: 0.9rem;">
-                    Made by Physics Students, For Physics Students
-                </p>
+                <p>© 2025 Physics Portal | Created by B.Sc. Physics Student | Powered by Passion for Science</p>
             </div>
         </div>
     </footer>
 
 </body>
 </html>
+
+    
+        
